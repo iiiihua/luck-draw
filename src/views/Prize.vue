@@ -59,6 +59,7 @@
                 }
                 if (this.money < 300){
                     window.alert('金豆不足')
+                    return;
                 }else {
                     this.money -= 300
                 }
@@ -80,6 +81,7 @@
                 }else {
                     this.lis[this.play -1].style.background = 'rgb(252, 237, 64)'
                     this.lis[this.play -1].style.boxShadow = 'inset 0px -1em 15px rgb(248, 213, 58);'
+                    console.log(this.play)
                     this.lis[this.play].style.background = 'rgb(109,101,27)'
                     this.lis[this.play].style.boxShadow = 'none'
                 }
@@ -100,23 +102,26 @@
                         this.money += 500
                     }else if (this.over === 3){
                         this.key = '恭喜中奖'
-                        this.value = '1000金豆'
-                        this.money += 1000
-                    }else if (this.over === 4){
-                        this.key = '恭喜中奖'
                         this.value = '1金豆'
                         this.money += 1
+                    }else if (this.over === 4){
+                        this.key = '很遗憾'
+                        this.value = '谢谢惠顾'
                     }else if (this.over === 5){
-                        this.key = '恭喜中奖'
-                        this.value = '100金豆'
-                        this.money += 100
-                    }else if (this.over === 6){
                         this.key = '恭喜中奖'
                         this.value = '200金豆'
                         this.money += 200
+                    }else if (this.over === 6){
+                        this.key = '恭喜中奖'
+                        this.value = '100金豆'
+                        this.money += 100
                     }else if (this.over === 7){
-                        this.key = '很遗憾'
-                        this.value = '谢谢惠顾'
+                        this.key = '恭喜中奖'
+                        this.value = '1000金豆'
+                        this.money += 1000
+                    }
+                    if (this.play === 7) {
+                        this.play = -1
                     }
                     this.showPrize = true
                     this.click = true
@@ -125,9 +130,10 @@
                 if (this.play === 7) {
                     this.play = -1
                 }
+
                 if (this.rolls >20 && this.time > 200 ){
                     this.time -= 100
-                }else if (this.rolls < 5 && this.time <800){
+                }else if (this.rolls < 3 && this.time <800){
                     this.time += 200
                 }
 
@@ -135,7 +141,7 @@
             }
         },
         mounted() {
-            const lis = [this.$refs.li1, this.$refs.li2, this.$refs.li3, this.$refs.li4, this.$refs.li5, this.$refs.li6, this.$refs.li7, this.$refs.li8]
+            const lis = [this.$refs.li1, this.$refs.li2, this.$refs.li3, this.$refs.li5, this.$refs.li8, this.$refs.li7, this.$refs.li6, this.$refs.li4]
             this.lis = lis
         }
     }
